@@ -3,7 +3,7 @@ Ansible Interview Questions
 
 1. What is  inventory file used for and default inventory host location?
 
-  The Ansible inventory file defines the hosts and groups of hosts upon which commands, modules, and tasks in a playbook operate. The file can be in one of many formats depending on your Ansible environment and plugins. The default location for the inventory file is /etc/ansible/hosts. If necessary, you can also create project-specific inventory files in alternate locations.
+A: The Ansible inventory file defines the hosts and groups of hosts upon which commands, modules, and tasks in a playbook operate. The file can be in one of many formats depending on your Ansible environment and plugins. The default location for the inventory file is /etc/ansible/hosts. If necessary, you can also create project-specific inventory files in alternate locations.
 
 2. What is ansible configuration file used for and its default path?
   
@@ -15,16 +15,25 @@ Ansible Interview Questions
 4. How many types of variables and precedence?
 
 There are almost 16 variable precedence in ansible where extra vars have highist precedence
+Ansible offers four sources for controlling its behavior. In order of precedence from lowest (most easily overridden) to highest (overrides all others), the categories are:
+
+Configuration settings
+Command-line options
+Playbook keywords
+Variables
 
 5. Write the command to find the python version on nodes?
-
+ansible all -m shell -a 'python --version'
 6. What is the file structure of ansible roles?
 
-  Ansible roles can be as complex or as simple as you need. Sometimes, it is helpful to start simple and iterate into a more complex role as you shore up the base functionality.
+  Ansible role is a set of tasks to configure a host to serve a certain purpose like configuring a service. Roles are defined using YAML files with a predefined directory structure.
+  A role directory structure contains directories: defaults, vars, tasks, files, templates, meta, handlers.
 
 7. What happen when one node or instance is unreachable?
-
+The task excecution fails if you want to excecute still set gather_facts=no and ignore_errors=true
+if one 
 8. What happen when one task  is failed in playbook?
+Playbook will not run if any handler are notified state and the host went into unexpected state
 
 9. I have 20 servers , I want to install one package in 5 servers and other package in next 5 servers..like that How to write in ansible script for that…Explain?
 
